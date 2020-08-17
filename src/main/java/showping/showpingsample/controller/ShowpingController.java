@@ -36,7 +36,7 @@ public class ShowpingController {
         return "/showping/userlist";
     };
 
-    @PostMapping("/showping/new")//회원가입에서 오는거
+    @PostMapping("/showping/new")//회원가입에서 오는거 회원가입하겠다
     public String usernew(UserDtoFrom userDtoFrom){
         //회원가입에서 온 값들  서비스로 조인
         UserDto userDto=new UserDto();

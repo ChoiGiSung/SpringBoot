@@ -5,7 +5,7 @@ import showping.showpingsample.Dto.UserDto;
 import java.util.Optional;
 import java.util.List;
 
-//서비스는 서비스 인터페이스를 정의하고 dao에서 구현하고 여기서 사용하기 쉽게 만들고 dao에서 이 service를 사용한다
+//서비스는 서비스 인터페이스를 정의하고 dao에서 구현하고 여기서 사용하기 쉽게 만들고 controller에서 이 service를 사용한다
 public class UserService {
 
     private final UserRepository userRepository;
