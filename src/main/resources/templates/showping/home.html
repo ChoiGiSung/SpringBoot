@@ -3,14 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>mainpage</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        body{
+            margin: 0 auto;
+            width:500px;
+        }
+
+        .main{
+            background-color:gray;
+            margin: 0 auto;
+            height: 300px;
+        }
+
+        .category> h3{
+                text-align: center;
+        }
+
+        .category > div{
+            text-align: center
+        }
+        .category button{
+            display: inline;
+        }
+    </style>
 </head>
 <body>
 <!--여러곳으로 가야지-->
     <div>
-        <button onclick="location.href='/showping/signup'">회원가입</button>
-        <button onclick="location.href='/showping/userlist'">회원목록</button>
-        <button onclick="location.href='/item/ItemSign'">상품등록</button>
-        <button onclick="location.href='/Item/ItemList'">상품 목록</button>
+        <div>
+            <h2>Hello Shop</h2>
+            <br><hr>
+        </div>
+        <div class="main">
+            <div class="category">
+                <h3 class="category_1">회원 기능</h3>
+                <div>
+                    <button onclick="location.href='/showping/signup'" class="category_1  btn-primary btn-lg">회원가입</button>
+                    <button onclick="location.href='/showping/userlist'" class="category_1  btn-secondary btn-lg">회원목록</button>
+                </div>
+
+            </div>
+            <div class="category">
+                <h3>상품 기능</h3>
+                <div>
+                    <button onclick="location.href='/item/ItemSign'" class="btn-primary btn-lg">상품등록</button>
+                    <button onclick="location.href='/Item/ItemList'" class="btn-secondary btn-lg">상품 목록</button>
+                </div>
+            </div>
+            <div class="category">
+                <h3>주문 기능</h3>
+                <div>
+                    <button onclick="location.href='/order/orderSign'" class="btn-primary btn-lg">주문하기</button>
+                    <button onclick="location.href='/order/OrderList'" class="btn-secondary btn-lg">주문조회</button>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
     </div>
+    <br><br><hr>
+    <h5>@GiSung</h5>
 </body>
 </html>

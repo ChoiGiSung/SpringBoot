@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>회원목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .main{
+            width:500px;
+            margin: 0 auto;
+        }
+
+    </style>
+
 </head>
 <body>
     <div>
-        <div>
-            <table>
-                <thead>
+        <div class="main">
+            <div>
+                <h6>Home</h6>
+                <h2>HELLO SHOP</h2>
+                <br>
+                <hr>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
+                        <th >id</th>
                         <th>이름</th>
+                        <th>도시</th>
+                        <th>전화번호</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="User:${Users}">eo
+                    <tr th:each="User:${Users}">
                         <td th:text="${User.id}"></td>
                         <td th:text="${User.user_name}"></td>
                         <td th:text="${User.city}"></td>
@@ -22,6 +42,10 @@
                     </tr>
                 </tbody>
             </table>
+
+            <br>
+            <hr>
+            <h3>@Giseong</h3>
         </div>
     </div>
 </body>

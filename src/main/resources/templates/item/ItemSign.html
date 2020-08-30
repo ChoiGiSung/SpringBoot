@@ -3,18 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>상품등록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .main{
+            width:500px;
+            margin: 0 auto;
+        }
+        form >div{
+           text-align:center;
+           }
+
+        form > div > * {
+            padding:15px;
+        }
+
+
+        .submit{
+            display:block;
+            margin-left: 221px;
+            margin-top:15px;
+        }
+        form div>h6{
+            margin-left: -150px;
+            margin-bottom: 5px;
+        }
+
+    </style>
 </head>
 <body>
     <div>
-        <form action="/item/new" method="post">
+        <div class="main">
             <div>
-                <input type="text" name="item_name" placeholder="상품명">
-                <input type="number" name="item_price" placeholder="가격">
-                <input type="number" name="item_mount" placeholder="수량">
-                <input type="text" name="user_name" placeholder="저자">
+                <h6>Home</h6>
+                <h2>HELLO SHOP</h2>
+                <br>
+                <hr>
             </div>
-            <input type="submit" value="보내기">
-        </form>
+            <form action="/item/new" method="post">
+                <div>
+                    <h6>상품명</h6>
+                    <input type="text" name="item_name" placeholder="상품명">
+                    <h6>가격</h6>
+                    <input type="number" name="item_price" placeholder="가격">
+                    <h6>수량</h6>
+                    <input type="number" name="item_mount" placeholder="수량">
+                    <h6>저자</h6>
+                    <input type="text" name="user_name" placeholder="저자">
+                </div>
+                <button type="submit"  class="submit btn btn-primary">보내기</button>
+            </form>
+            <br>
+            <hr>
+            <h3>@Giseong</h3>
+        </div>
 
     </div>
 </body>

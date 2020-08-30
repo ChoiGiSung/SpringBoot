@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import showping.showpingsample.Dao.ItemDao;
+import showping.showpingsample.Dao.OrderDao;
 import showping.showpingsample.Dao.UserDao;
-import showping.showpingsample.service.ItemRepository;
-import showping.showpingsample.service.ItemService;
-import showping.showpingsample.service.UserRepository;
-import showping.showpingsample.service.UserService;
+import showping.showpingsample.Dto.OrderDto;
+import showping.showpingsample.service.*;
 
 import javax.sql.DataSource;
 
@@ -37,6 +36,16 @@ public class ShowpingConfig {
     public ItemService itemService(){return new ItemService(itemRepository());}
     @Bean
     public ItemRepository itemRepository(){return new ItemDao(dataSource);
+    }
+
+    //주문등록
+    @Bean
+    public OrderService orderService(){
+        return new OrderService(orderRepository());
+    }
+    @Bean //리포지토리는 서비스에서 사용한다
+    public OrderRepository orderRepository(){
+        return new OrderDao(dataSource);
     }
 
 }

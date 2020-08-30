@@ -3,26 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>상품목록</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .main{
+            width:500px;
+            margin: 0 auto;
+        }
+
+    </style>
 </head>
 <body>
     <div>
-        <div>
-            <table>
-                <thead>
+        <div class="main">
+            <div>
+                <h6>Home</h6>
+                <h2>HELLO SHOP</h2>
+                <br>
+                <hr>
+            </div>
+            <table class="table">
+                <thead class="thead-dark">
                     <tr>
+                        <th>상품번호</th>
                         <th>상품</th>
+                        <th>상품 가격</th>
+                        <th>상품 수량</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="item:${Items}">
                         <td th:text="${item.item_id}"></td>
-                        <td th:text="${item.user_name}"></td>
+
                         <td th:text="${item.item_name}"></td>
                         <td th:text="${item.item_price}"></td>
                         <td th:text="${item.item_mount}"></td>
                     </tr>
                 </tbody>
             </table>
+
+            <br>
+            <hr>
+            <h3>@Giseong</h3>
         </div>
     </div>
 </body>
