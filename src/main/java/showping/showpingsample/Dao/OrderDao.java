@@ -70,7 +70,16 @@ public class OrderDao implements OrderRepository {
     public OrderDto plus(int order_id,String item_name) { //업데이트문에 필요한건 아이템이름과 재고
         //업데이트문 작성
         //cancle누른거의 아이템이름과 해당 갯수를 가지고 와서 item테이블에 +시킨다
-        jdbcTemplate.update("update item set item_mount =  (select distinct (i.item_mount + o.item_mount ) from order_table o,item i where o.order_id = ? and i.item_name = ?)where item_name=?",order_id,item_name,item_name);
+
+
+
+        jdbcTemplate.update("update item set item_mount = " +
+                " (select distinct (i.item_mount + o.item_mount )" +
+                " from order_table o,item i" +
+                " where o.order_id = ? " +
+                "and i.item_name = ?)" +
+                "" +
+                "where item_name=?",order_id,item_name,item_name);
 
         //버튼상태 바꾸기
         jdbcTemplate.update("update order_table set order_state= 'cancle' where order_id=?",order_id);
