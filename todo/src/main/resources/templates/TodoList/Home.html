@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>메인dd</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        table{
+            border:1px solid black;
+
+        }
+
+        }
+        .tableTo{
+          display: flex;
+
+          text-align: center;
+        }
+        .tableTo > div{
+            padding: 15px;
+            width: 260px;
+            display: inline-grid;
+        }
+
+        .top{
+            text-align: right;
+        }
+
+        p3{
+            font-size: larger;
+        }
+
+        p4,span{
+            font-size: xx-small;
+        }
+
+
+    </style>
+</head>
+<body>
+<div>
+    <div class="main">
+        <div class="top">
+            <button onclick="location.href='/TodoList/write'" class="btn-primary">새로운 todo등록</button>
+        </div>
+        <div class="tableTo" style="text-align: center;">
+            <div class="do">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>TODO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="todo:${todo}">
+                            <td th:if="${todo.getType().equals('todo')}">
+                                <p3 th:text="${todo.getTitle()}" class="font-weight-bold"></p3><br>
+                                <span class="font-weight-light">등록날짜:</span><span th:text="${todo.getRegdate()}" class="font-weight-light"></span>,
+                                <span th:text="${todo.getName()}"></span>,
+                                <span>우선순위:</span><span th:text="${todo.getSequence()}"></span>
+                                <br>
+                                <a th:href="@{/TodoList/godoing(id=${todo.getId()})}"  class="btn-primary btn-sm">보내기</a>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="doing">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>DOING</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="todo:${todo}">
+                                <td th:if="${todo.getType().equals('doing')}">
+                                    <p3 th:text="${todo.getTitle()}" class="font-weight-bold"></p3><br>
+                                    <span>등록날짜:</span><span th:text="${todo.getRegdate()}"></span>,
+                                    <span th:text="${todo.getName()}"></span>,
+                                    <span>우선순위:</span><span th:text="${todo.getSequence()}"></span>
+                                    <br>
+                                    <a th:href="@{/TodoList/godone(id=${todo.getId()})}" class="btn-primary btn-sm">보내기</a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+            </div>
+            <div class="done">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>DONE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="todo:${todo}">
+                            <td th:if="${todo.getType().equals('done')}">
+                                <p3 th:text="${todo.getTitle()}" class="font-weight-bold"></p3><br>
+                                <span>등록날짜:</span><span th:text="${todo.getRegdate()}"></span>,
+                                <span th:text="${todo.getName()}"></span>,
+                                <span>우선순위:</span><span th:text="${todo.getSequence()}"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

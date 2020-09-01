@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>쓰기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        .main{
+            width:500px;
+            margin:0 auto;
+        }
+        div >h2{
+            text-align: center;
+        }
+        .text,.sequ{
+            display: block;
+            width: 450px;
+        }
+        .submit{
+            display: inline;
+             margin-left: 233px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        <div class="main">
+            <div>
+                <h2>할일 등록</h2>
+            </div>
+            <form action="/TodoList/new" method="post">
+                <div>
+                    <p4>어떤일인가요</p4>
+                    <input type="text" placeholder="무슨일" name="title" class="text">
+                </div>
+                <div>
+                    <p4>누가할일인가요?</p4>
+                    <input type="text" placeholder="누가" name="name" class="text">
+                </div>
+                <div>
+                    <p4>우선순위를 선택하세요</p4>
+                    <div clas="sequ">
+                        <input type="checkbox" name="sequence" value=1>1순위
+                        <input type="checkbox" name="sequence" value=2>2순위
+                        <input type="checkbox" name="sequence" value=3>3순위
+                    </div>
+                </div>
+                <div>
+                    <button onclick="lacation.href='redirect:/'" class="btn-light"> 이전</button>
+                    <div class="submit">
+                        <button type="submit" class="btn-primary">보내기</button>
+                        <button type="reset" class="btn-primary">내용지우기</button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
