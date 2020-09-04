@@ -36,7 +36,7 @@ class JpashopApplicationTests {
 		Long saveId= memberService.join(member);
 
 		//then
-		Assertions.assertEquals(member,memberRepository.find(saveId));
+		Assertions.assertEquals(member,memberRepository.findOne(saveId));
 
 	}
 
