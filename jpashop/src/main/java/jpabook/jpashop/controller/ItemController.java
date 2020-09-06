@@ -63,17 +63,22 @@ public class ItemController {
     
     //id는? 실무에서는 아이디를 권한이 있는지 체크해줘야한다 뒤쪽에서
     @PostMapping("/items/{itemId}/edit")
-    public String updateItem(@ModelAttribute("form") BookForm form) {
+    public String updateItem(@PathVariable Long itemId,@ModelAttribute("form") BookForm form) {
 
-        Book book = new Book();
-        book.setId(form.getId());
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
+        //book을 만든 이유는 from은 웹 계층에서 만 쓰자고 했기 떄문
 
-        itemService.saveItem(book);
+//        Book book = new Book();
+//        book.setId(form.getId());
+//        book.setName(form.getName());
+//        book.setPrice(form.getPrice());
+//        book.setStockQuantity(form.getStockQuantity());
+//        book.setAuthor(form.getAuthor());
+//        book.setIsbn(form.getIsbn());
+//
+//        itemService.saveItem(book);
+
+        //더 나은 설계는 엔티티를 날리는거보다 이렇게 날리는게 좋다 ->dto를 만들어서 보내거나
+        itemService.updateItem(itemId,form.getName(),form.getPrice(),form.getStockQuantity());
 
         return "redirect:/items";
 
