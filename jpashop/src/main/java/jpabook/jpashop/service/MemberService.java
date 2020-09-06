@@ -57,4 +57,13 @@ public class MemberService {
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
+
+    //업데이트문 api
+    @Transactional
+    public void upadte(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        //영속성을 가져와서 이름을 바꾸고 
+        //Transactional이 끝나면서 commit하면서 값이 바뀐거를 update한다
+        member.setName(name); 
+    }
 }
