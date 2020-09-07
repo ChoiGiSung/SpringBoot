@@ -1,5 +1,6 @@
 package jpabook.jpashop.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +23,8 @@ public class Member {
     @Embedded //내장 타입이다 둘 중 하나만 적어주면 된다
     private Address address;
 
-    //@JsonIgnore api에서 orders안보이게
+    @JsonIgnore
+    //api에서 orders안보이게 + 양방향 관계에서는 한쪽은 jsonIgnore를 해줘야 한다
     @OneToMany(mappedBy = "member") //일대다 관계 order와 서로 반대이다
     //mappedBy -> 나는 읽기 전용이야 연관관계의 거울이야
     //오더 테이블에 있는 member로 매핑된거야

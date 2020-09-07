@@ -61,5 +61,7 @@ public class OrderService {
     //검색
     public List<Order> findOrders(OrderSearch orderSearch){
         return orderRepository.findAllByString(orderSearch);
+        //리스트에서 보이게 근데 
+        //findAll여기가 애매해 동적쿼리로 안만들었다 해야지뭐
     }
 }
