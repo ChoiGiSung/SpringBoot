@@ -46,9 +46,9 @@ public class JpaMain {
                     .setMaxResults(7)
                     .getResultList(); //페이징 4번부터 7번까지 가져와
 
-            for(Member member: result){
-                System.out.println(member.getName());
-            }
+//            for(Member member: result){
+//                System.out.println(member.getName());
+//            }
 
             tx.commit();
         }catch (Exception e){

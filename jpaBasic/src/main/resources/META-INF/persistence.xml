@@ -12,10 +12,11 @@
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 
             <!-- 옵션 -->
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.show_sql" value="true"/> <!--sql보기-->
+            <property name="hibernate.format_sql" value="true"/> <!--sql보기 좋게-->
+            <property name="hibernate.use_sql_comments" value="true"/><!--sql코멘트-->
             <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/><!--sql실행시 새롭게 테이블 생성-->
         </properties>
     </persistence-unit>
 </persistence>
