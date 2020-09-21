@@ -20,6 +20,11 @@ public class Member {
     @OneToMany(mappedBy = "member") //연관관계의 주인은 member야
     private List<Order> orders=new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
+
     public Long getId() {
         return id;
     }

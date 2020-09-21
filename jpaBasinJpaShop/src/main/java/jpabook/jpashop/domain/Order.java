@@ -30,6 +30,12 @@ public class Order {
     private List<OrderItem> orderItems=new ArrayList<>();
     //조회만을 위한 orderItems
 
+    @OneToOne
+    @JoinColumn(name = "DELIVERY_ID")
+    private Delivery delivery;
+
+
+
     public void addOrderItem(OrderItem orderItem) {
         //연관관계 편의 메소드
         //오더아이템리스트에 오더를 넣고 아이템에도 오더를 넣어준다
