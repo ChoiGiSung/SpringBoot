@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED) //조인 전략 , 싱글테이블 전략은SINGLE_TABLE //table_per_class는  item 클래스 없이 밑에 클래스만 생성
 @DiscriminatorColumn //d타입을 넣는다 항상 있는게 좋다
-public abstract class Item {
+public abstract class Item extends BaseEntity{
 
     @Id
     @GeneratedValue
