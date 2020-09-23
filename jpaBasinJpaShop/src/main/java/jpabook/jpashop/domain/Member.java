@@ -2,8 +2,7 @@ package jpabook.jpashop.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Member extends BaseEntity{
@@ -14,9 +13,7 @@ public class Member extends BaseEntity{
     private Long id;
 
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
 
     @OneToMany(mappedBy = "member") //연관관계의 주인은 member야
     private List<Order> orders=new ArrayList<>();
@@ -25,7 +22,41 @@ public class Member extends BaseEntity{
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
+    //period 기간
+    @Embedded
+    private Period period;
 
+    //주소 값 타입으로 사용
+    @Embedded
+    private Address address;
+
+    //값 타입 컬렉션
+    @ElementCollection
+    @CollectionTable(name = "FaVORITE_FOOD",joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    @Column(name = "FOOD_NAME")
+    private Set<String> favoriteFoods=new HashSet<>();
+
+    //값 타입 컬렉션
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS",joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory=new ArrayList<>();
+
+
+    public Period getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Period period) {
+        this.period = period;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     public Long getId() {
         return id;
@@ -43,27 +74,4 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
 }

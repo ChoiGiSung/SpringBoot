@@ -17,7 +17,7 @@ public class Order extends BaseEntity{
 //    @Column(name="MEMBER_ID") //db대로 설계했을 경우
 //    private Long memberId;
     @JoinColumn(name ="MEMBER_ID") //단방향으로 설계
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     //하이버네이트는 자동 매핑되서 @TEMTIONAL을 안 써도 된다
@@ -26,11 +26,11 @@ public class Order extends BaseEntity{
     @Enumerated(EnumType.STRING) //이넘은 스트링으로 명시해줘라
     private OrderStatus status;
 
-    @OneToMany(mappedBy = "order") //연관관계의 주인은 order야 //양방향이 아니라면 없어도 되는 것
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL) //연관관계의 주인은 order야 //양방향이 아니라면 없어도 되는 것
     private List<OrderItem> orderItems=new ArrayList<>();
     //조회만을 위한 orderItems
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 
