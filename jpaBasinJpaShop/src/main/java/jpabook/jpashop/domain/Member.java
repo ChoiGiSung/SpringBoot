@@ -30,17 +30,47 @@ public class Member extends BaseEntity{
     @Embedded
     private Address address;
 
-    //값 타입 컬렉션
+    //값 타입 컬렉션 은 영속성 전이 + 고아객체의 기능을 가진다
     @ElementCollection
     @CollectionTable(name = "FaVORITE_FOOD",joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    //테이블을 새로 만든다 외래키는 멤버 id를 받아서
     @Column(name = "FOOD_NAME")
     private Set<String> favoriteFoods=new HashSet<>();
 
-    //값 타입 컬렉션
-    @ElementCollection
-    @CollectionTable(name = "ADDRESS",joinColumns = @JoinColumn(name = "MEMBER_ID"))
-    private List<Address> addressHistory=new ArrayList<>();
+    //값 타입 컬렉션 은 지연로딩이다 처음 멤버를 조회하면 join문이 안나가고 나중에 사용하면 그때 접근한다
+//    @ElementCollection
+//    @CollectionTable(name = "ADDRESS",joinColumns = @JoinColumn(name = "MEMBER_ID"))
+//    private List<Address> addressHistory=new ArrayList<>();
+    //쓰지말자 대안 방안
 
+    public List<AddressEntity> getAddressEntities() {
+        return addressEntities;
+    }
+
+    public void setAddressEntities(List<AddressEntity> addressEntities) {
+        this.addressEntities = addressEntities;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+    @JoinColumn(name = "MEMBER_ID") //일대다 단방향
+    private List<AddressEntity> addressEntities=new ArrayList<>();
+
+
+    public Set<String> getFavoriteFoods() {
+        return favoriteFoods;
+    }
+
+    public void setFavoriteFoods(Set<String> favoriteFoods) {
+        this.favoriteFoods = favoriteFoods;
+    }
+
+//    public List<Address> getAddressHistory() {
+//        return addressHistory;
+//    }
+//
+//    public void setAddressHistory(List<Address> addressHistory) {
+//        this.addressHistory = addressHistory;
+//    }
 
     public Period getPeriod() {
         return period;
