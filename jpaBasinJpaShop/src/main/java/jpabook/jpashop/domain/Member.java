@@ -43,6 +43,7 @@ public class Member extends BaseEntity{
 //    private List<Address> addressHistory=new ArrayList<>();
     //쓰지말자 대안 방안
 
+    //그래서 어드레스를 엔티티로 승격시키고 그걸 사용한다.
     public List<AddressEntity> getAddressEntities() {
         return addressEntities;
     }

@@ -2,10 +2,11 @@ package jpabook.jpashop;
 
 import jpabook.jpashop.domain.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class JpaMain {
 
@@ -66,8 +67,37 @@ public class JpaMain {
             //값 타입 컬렉션은 변경사항이 있으면 주인엔티티와 연관된 모든 데이터를 삭제하고 , 값 타입 컬렉션에 있는 현재 값을 모두 다시 ! 저장한다.
             //그래서 잘 쓰지않는다 값타입객체 컬렉션
             //대안 방법은 엔티티로 묶어 내느것
-            
-            
+
+            //값 타입은 ok 값타입 컬렉션은 좀..
+
+
+
+            //jpql -> 아무래도 String 이다 보니까 동적 쿼리를 만들기가 어렵다.
+            List<Member> resultList = em.createQuery(
+                    "select  m from Member m where m.username like '%keim'",
+                    Member.class).getResultList();
+
+            //criteriaBuilder 이용 쿼리를 코드로 만든다 -> 동적쿼리를 맘대로 다룰 수 있다
+            CriteriaBuilder cb=em.getCriteriaBuilder();
+            CriteriaQuery<Member> query=cb.createQuery(Member.class);
+
+            Root<Member> m = query.from(Member.class);
+            CriteriaQuery<Member> cq =query.select(m).where(cb.equal(m.get("username"),"kim"));
+
+            List<Member> resultList1 = em.createQuery(cq).getResultList();
+
+
+            //jqpl연습
+            TypedQuery<Member> select_m_from_member_m = em.createQuery("select m from Member m", Member.class);
+            TypedQuery<String> select_m_from_member_m2 = em.createQuery("select m.name from Member m",String.class); //주어지는 타입
+            Query query1 = em.createQuery("select m.name,m.age from Member m");//주어지는 타입
+            //여러개를 받을때(반환 타입이 명확하지 않으면) 쿼리를 사용
+
+            //값이 하나만 있을때는 싱글리절트를 쓸 수 도 있다
+            TypedQuery<Member> query2 = em.createQuery("select m from Member m where m.username =:usernname", Member.class);
+            query2.setParameter("username","member1");
+            Member singleResult = query2.getSingleResult();
+
             tx.commit();
 
         }catch (Exception e){
