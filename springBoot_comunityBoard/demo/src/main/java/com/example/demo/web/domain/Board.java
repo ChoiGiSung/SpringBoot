@@ -42,12 +42,12 @@ public class Board implements Serializable {
 
 
     @Builder
-    public Board(String title, String subTitle, String content, BoardType boardType, LocalDateTime createｄDate, LocalDateTime updateDate, User user) {
+    public Board(String title, String subTitle, String content, BoardType boardType, LocalDateTime createdDate, LocalDateTime updateDate, User user) {
         this.title = title;
         this.subTitle = subTitle;
         this.content = content;
         this.boardType = boardType;
-        this.createdDate = createｄDate;
+        this.createdDate = createdDate;
         this.updateDate = updateDate;
         this.user = user;
     }

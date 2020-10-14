@@ -40,7 +40,7 @@ public class JpaMappingTest {
         .subTitle("서브 타이틀")
         .content("컨텐츠")
         .boardType(BoardType.free)
-        .createDate(LocalDateTime.now())
+        .createdDate(LocalDateTime.now())
         .updateDate(LocalDateTime.now())
         .user(user).build());
     }

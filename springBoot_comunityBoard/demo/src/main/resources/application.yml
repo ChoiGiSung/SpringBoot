@@ -5,19 +5,45 @@ server:
 datasource:
   url: jdbc:h2:mem:testdb
 
+
 spring:
   h2:
     console:
       enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+  devtools:
+    livereload:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 805538680307-oetrcg13hnbcrbv7u11kqfna5fs6gmjd.apps.googleusercontent.com
+            client-secret: HhEJAtu7FarCGwOA9e5HIbtf
+
+custom:
+  oauth2:
+    kakao:
+      client-id: 9cb7ce89ef6958cef1595773549f8c5c
+---
 
 
 
+---
 property:
   test:
     name: property depth test
 
 propertyTest: test
 propertyTestList: a,b,c
+
+
 
 fruit:
   list:
