@@ -24,9 +24,7 @@ dependencies {
 
 	annotationProcessor("org.projectlombok:lombok")
 
-	runtime('com.h2database:h2')
-
-
+	runtime('mysql:mysql-connector-java')
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
