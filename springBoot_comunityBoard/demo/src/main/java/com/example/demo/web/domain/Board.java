@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table
+@Table(name = "boardss")
 public class Board implements Serializable {
 
     @Id

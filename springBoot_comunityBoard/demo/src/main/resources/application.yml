@@ -6,17 +6,18 @@ server:
 
 
 spring:
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/bostsample?serverTimezone=Asia/Seoul&useSSL=false
+    url: jdbc:mysql://localhost:3306/bostsample?serverTimezone=Asia/Seoul
     username: root
     password: 1234
-
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL55Dialect
+    generate-ddl: false
+    hibernate:
+      show-sql: true
+      format_sql: true
+      ddl-auto: create
   h2:
     console:
       enabled: false
