@@ -8,8 +8,8 @@ import java.util.*;
 
 @Repository
 public class ItemRepository {
-    private final EntityManager entityManager;
 
+    private final EntityManager entityManager;
     public ItemRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
