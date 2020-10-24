@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thyemleaf.org">
+<head th:replace="fragments/header :: header">
+</head>
+<body>
+
+<div>
+    <div th:replace="fragments/bodyHeader" :: bodyHeader/>
+        <form th:object="${memberForm}" method="post">
+            <div>
+                <label th:for="name">이름</label>
+                <input type="text" th:field="*{name}" placeholder="이름"
+                th:class="${#fields.hasErrors('name')}? 'form-control fieldError':'form-control'">
+                <p th:if="${#fields.hasErrors('name')}"  th:errors="*{name}">incorrect date</p>
+            </div>
+            <div>
+                <label th:for="city">도시</label>
+                <input type="text" th:field="*{city}" placeholder="도시">
+            </div>
+            <div>
+                <label th:for="street">거리</label>
+                <input type="text" th:field="*{street}" placeholder="거리">
+            </div>
+            <div>
+                <label th:for="zipcode">우편번호</label>
+                <input type="text" th:field="*{zipcode}" placeholder="우편버호">
+            </div>
+            <button type="submit"> submit</button>
+        </form>
+        <br/>
+    <div th:replace="fragments/footer :: footer"/>
+    </div>
+</div>
+
+</body>
+</html>

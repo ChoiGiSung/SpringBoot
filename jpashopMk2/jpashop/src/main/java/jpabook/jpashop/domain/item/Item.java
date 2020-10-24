@@ -48,4 +48,13 @@ public abstract class Item {
         }
         this.stocQuantity=restStock;
     }
+
+    /*
+    * 수정 사항 업데이트
+    * */
+    public void change(Long id,String name,int price,int stocQuantity){
+        this.name=name;
+        this.stocQuantity= stocQuantity;
+        this.price=price;
+    }
 }
