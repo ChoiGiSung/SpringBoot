@@ -22,7 +22,7 @@ public class OrderRepository {
     }
     
     //검색 로직
-   public List<Order> findAll(OrderSearch orderSearch){
+   public List<Order> findOnePotal(OrderSearch orderSearch){
 
     //값이 다 있다는 전제하에 유저가 이름도 다쓰고 상태도 다 골라줬을때
        return entityManager.createQuery("select o from Order o join o.member m" +

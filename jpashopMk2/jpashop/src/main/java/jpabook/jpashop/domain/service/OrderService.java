@@ -9,8 +9,10 @@ import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.repository.ItemRepository;
 import jpabook.jpashop.domain.repository.MemberRpository;
 import jpabook.jpashop.domain.repository.OrderRepository;
+import jpabook.jpashop.domain.repository.OrderSearch;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -70,5 +72,7 @@ public class OrderService {
     }
 
     //검색
-//    public List<Order>findOrder
+    public List<Order>findOrder(OrderSearch orderSearch){
+        return orderRepository.findOnePotal(orderSearch);
+    }
 }

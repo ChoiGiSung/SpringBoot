@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head th:replace="fragments/header :: header">
+</head>
+<body>
+
+<div>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
+
+    <div>
+        <div>
+            <form th:object="${orderSearch}">
+                <div>
+                    <input type="text" th:field="*{memberName}" placeholder="회원명">
+                </div>
+                <div>
+                    <select th:field="*{orderStatus}">
+                        <option value="">주문상태</option>
+                        <option th:each=
+                                        "status : ${T(jpabook.jpashop.domain.OrderStatus).values()}"
+                                        th:value="${status}"
+                                        th:text="${status}">
+                        </option>
+                    </select>
+                </div>
+                <button type="submit">검색</button>
+            </form>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>회원명</th>
+                    <th>대표 상품 이름</th>
+                    <th>주문가격</th>
+                    <th>주문수량</th>
+                    <th>상태</th>
+                    <th>일시</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item:${orders}">
+                    <td th:text="${item.id}"></td>
+                    <td th:text="${item.member.name}"></td>
+                    <td th:text="${item.orderItems[0].item.name}"></td>
+                    <td th:text="${item.orderItems[0].item.orderPrice}"></td>
+                    <td th:text="${item.orderItems[0].item.count}"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:text="${item.orderDate}"></td>
+                    <td>
+                        <a th:if="${item.status.name()=='ORDER'}"
+                        href="#" th:href="'javascript:cancel('+${item.id}+')'">
+                            cancel
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+</body>
+<script>
+ function cancel(id) {
+ var form = document.createElement("form");
+ form.setAttribute("method", "post");
+ form.setAttribute("action", "/orders/" + id + "/cancel");
+ document.body.appendChild(form);
+ form.submit();
+ }
+</script>
+</html>

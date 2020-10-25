@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.tymeleaf.org">
+<head th:replace="fragments/header :: header">
+</head>
+<body>
+
+<div>
+    <div th:replace="fragments/bodyHeader :: bodyHeader"></div>
+
+    <form action="/order" method="post">
+        <div>
+            <label for="member">주문회원</label>
+            <select name="mamberId" id="member">
+                <option value="">회원선택</option>
+                <option th:each="member : ${members}"
+                        th:value="${member.id}"
+                        th:text="${member.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="item">상품명</label>
+            <select name="itemId" id="item">
+                <option value="">회원선택</option>
+                <option th:each="item : ${items}"
+                        th:value="${item.id}"
+                        th:text="${item.name}">
+                </option>
+            </select>
+        </div>
+        <div>
+            <label for="count">주문 수량</label>
+            <input type="number" name="count" id="count" placeholder="주문 수량">
+        </div>
+        <button type="submit">submit</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+
+</body>
+</html>
