@@ -1,10 +1,8 @@
 package jpabook.jpashop.domain.repository;
 
-import jpabook.jpashop.domain.OrderStatus;
+import jpabook.jpashop.domain.domain2.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.PersistenceContext;
 
 @Getter @Setter
 public class OrderSearch {

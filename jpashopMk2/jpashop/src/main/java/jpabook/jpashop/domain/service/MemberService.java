@@ -1,6 +1,6 @@
 package jpabook.jpashop.domain.service;
 
-import jpabook.jpashop.domain.Member;
+import jpabook.jpashop.domain.domain2.Member;
 import jpabook.jpashop.domain.repository.MemberRpository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

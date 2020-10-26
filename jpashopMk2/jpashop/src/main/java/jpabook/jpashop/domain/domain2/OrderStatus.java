@@ -1,4 +1,4 @@
-package jpabook.jpashop.domain;
+package jpabook.jpashop.domain.domain2;
 
 public enum  OrderStatus {
 

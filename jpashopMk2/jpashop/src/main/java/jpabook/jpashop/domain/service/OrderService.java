@@ -1,10 +1,10 @@
 package jpabook.jpashop.domain.service;
 
 
-import jpabook.jpashop.domain.Delivery;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderItem;
+import jpabook.jpashop.domain.domain2.Delivery;
+import jpabook.jpashop.domain.domain2.Member;
+import jpabook.jpashop.domain.domain2.Order;
+import jpabook.jpashop.domain.domain2.OrderItem;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.repository.ItemRepository;
 import jpabook.jpashop.domain.repository.MemberRpository;

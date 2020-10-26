@@ -1,9 +1,9 @@
 package jpabook.jpashop.domain.service;
 
-import jpabook.jpashop.domain.Address;
-import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.domain.OrderStatus;
+import jpabook.jpashop.domain.domain2.Address;
+import jpabook.jpashop.domain.domain2.Member;
+import jpabook.jpashop.domain.domain2.Order;
+import jpabook.jpashop.domain.domain2.OrderStatus;
 import jpabook.jpashop.domain.exception.NotEnoughStockException;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.templateresolver.FileTemplateResolver;
 
 import javax.persistence.EntityManager;
 
