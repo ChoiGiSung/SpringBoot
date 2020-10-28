@@ -5,6 +5,8 @@ import jpabook.jpashop.domain.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class MemberApiController {
@@ -68,4 +70,34 @@ public class MemberApiController {
         private Long id;
         private String name;
     }
+
+    //조회 버전 1 :쓰지마
+    @GetMapping("/api/v1/members")
+    public List<Member> membersV1(){
+        return memberService.findMembers();
+    }
+
+    //조회 버전2: 이걸 쓰자
+    @GetMapping("/api/v2/members")
+    public Result memberV2(){
+        List<Member> members = memberService.findMembers();
+        List<MemberDto> collect = members.stream()
+                .map(m -> new MemberDto(m.getName()))
+                .collect(Collectors.toList());
+        return new Result(collect);
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class MemberDto{
+        private String name;
+    }
+
+    @Data
+    @AllArgsConstructor
+    private class Result<T> {
+        private T data;
+    }
+
+    
 }
