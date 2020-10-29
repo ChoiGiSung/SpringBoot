@@ -17,7 +17,7 @@
                     <select th:field="*{orderStatus}">
                         <option value="">주문상태</option>
                         <option th:each=
-                                        "status : ${T(jpabook.jpashop.domain.OrderStatus).values()}"
+                                        "status : ${T(jpabook.jpashop.domain.domain2.OrderStatus).values()}"
                                         th:value="${status}"
                                         th:text="${status}">
                         </option>
