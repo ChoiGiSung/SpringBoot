@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain.repository;
 
+import jpabook.jpashop.domain.api.OrderSimpleApiController;
 import jpabook.jpashop.domain.domain2.Order;
 import org.springframework.stereotype.Repository;
 
@@ -34,4 +35,12 @@ public class OrderRepository {
 
        //쿼리 dsl로 하는게 좋다
    }
+
+   //주문 조회 v3 페지 조인 사용
+    public List<Order> findOrderDtos() {
+        return entityManager.createQuery("select o from Order o"+
+                                            " join fetch o.member m"+
+                                            " join fetch o.delivery d",Order.class)
+                .getResultList();
+    }
 }
