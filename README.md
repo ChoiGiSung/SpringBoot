@@ -3,6 +3,8 @@
 >h2DB이용 jdbcTemplate
 2. # todo리스트
 >mysql이용 jdbcTemplate
+3. # 게시판
+> '처음 배우는 스프링부트2' 책 연습
 
 ## 미니쇼핑몰
 1. 메인화면
@@ -34,3 +36,12 @@
 >![스크린샷(23)](https://user-images.githubusercontent.com/60220562/91276677-d1ec1780-e7bc-11ea-96ed-3e2b24990da0.png)
 4. 할일 완료시 버튼으로 이동
 >![스크린샷(25)](https://user-images.githubusercontent.com/60220562/91276741-e29c8d80-e7bc-11ea-9c21-45bb7fab055a.png)
+
+## 게시판
+1. 로그인
+>![스크린샷(39)](https://user-images.githubusercontent.com/60220562/97705544-a0166a80-1af7-11eb-90e0-4b322eae38cb.png)
+2. 게시글화면
+>![스크린샷(40)](https://user-images.githubusercontent.com/60220562/97705578-aad0ff80-1af7-11eb-8dc8-10d6b114019c.png)
+3. 글작성, 글수정
+>![스크린샷(41)](https://user-images.githubusercontent.com/60220562/97705629-bde3cf80-1af7-11eb-99a7-4ad92c1ff33a.png)
+>![스크린샷(42)](https://user-images.githubusercontent.com/60220562/97705648-c4724700-1af7-11eb-9f1e-981bd3d5f102.png)
