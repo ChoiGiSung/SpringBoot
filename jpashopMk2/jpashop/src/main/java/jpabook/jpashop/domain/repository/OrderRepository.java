@@ -55,4 +55,14 @@ public class OrderRepository {
                 .getResultList();
 
     }
+
+    //to one 관계 페이징 처리
+    public List<Order> findOrderDtos(int offset, int limit) {
+        return entityManager.createQuery("select o from Order o"+
+                " join fetch o.member m"+
+                " join fetch o.delivery d",Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+    }
 }

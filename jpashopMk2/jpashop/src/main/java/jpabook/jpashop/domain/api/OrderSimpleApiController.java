@@ -6,6 +6,7 @@ import jpabook.jpashop.domain.repository.SimpleOrderQueryDto;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,5 +30,28 @@ public class OrderSimpleApiController {
     }
 
 
+    //to one 관계 페이징
+    @GetMapping("/api/v3.1/orders")
+    public List<OrderDto>orderV3_page(@RequestParam(value = "offset",defaultValue = "0")int offset,
+                                      @RequestParam(value = "limit",defaultValue = "100")int limit){
+        List<Order>orders=orderRepository.findOrderDtos(offset,limit);
+
+        List<OrderDto> collect = orders.stream()
+                .map(o -> new OrderDto(o))
+                .collect(Collectors.toList());
+
+        return collect;
+
+    }
+
+    private class OrderDto {
+        private Long orderId;
+        private String name;
+
+        public OrderDto(Order order) {
+            this.orderId = order.getId();
+            this.name = order.getMember().getName();
+        }
+    }
 
 }
