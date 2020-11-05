@@ -20,4 +20,13 @@ public class OrderQueryRepository {
                 " join o.delivery d",OrderQueryDto.class)
         .getResultList();
     }
+
+    public List<OrderQueryDto> findAllByDto_opti() {
+        List<OrderQueryDto> result = findOrderQueryDtos();
+        return entityManager.createQuery("select new" +
+                " from Order o"+
+                " join o.member m"+
+                " join o.delivery d",OrderQueryDto.class)
+                .getResultList();
+    }
 }
