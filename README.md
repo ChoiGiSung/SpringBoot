@@ -1,6 +1,6 @@
 # SpringBoot
-1. # 미니쇼핑몰
->h2DB이용 jdbcTemplate
+1. # 미니쇼핑몰 
+>h2DB이용 jdbcTemplate, Mk2는 jpa 이용 (인프런 김영한)
 2. # todo리스트
 >mysql이용 jdbcTemplate
 3. # 게시판
