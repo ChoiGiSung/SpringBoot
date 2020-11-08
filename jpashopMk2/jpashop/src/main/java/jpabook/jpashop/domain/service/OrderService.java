@@ -7,7 +7,7 @@ import jpabook.jpashop.domain.domain2.Order;
 import jpabook.jpashop.domain.domain2.OrderItem;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.repository.ItemRepository;
-import jpabook.jpashop.domain.repository.MemberRpository;
+import jpabook.jpashop.domain.repository.MemberRepositoryOld;
 import jpabook.jpashop.domain.repository.OrderRepository;
 import jpabook.jpashop.domain.repository.OrderSearch;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,10 @@ import java.util.*;
 @Transactional
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final MemberRpository memberRpository;
+    private final MemberRepositoryOld memberRpository;
     private final ItemRepository itemRepository;
 
-    public OrderService(OrderRepository orderRepository, MemberRpository memberRpository, ItemRepository itemRepository) {
+    public OrderService(OrderRepository orderRepository, MemberRepositoryOld memberRpository, ItemRepository itemRepository) {
         this.orderRepository = orderRepository;
         this.memberRpository = memberRpository;
         this.itemRepository = itemRepository;
@@ -37,7 +37,7 @@ public class OrderService {
         //핵심로직은 entity 에서 구현이 되엇따.
 
         //엔티티 조회
-        Member member=memberRpository.findMember(memberId);
+        Member member= memberRpository.findMember(memberId);
         Item item= itemRepository.findOne(itemId);
 
         //배송 정보 생성

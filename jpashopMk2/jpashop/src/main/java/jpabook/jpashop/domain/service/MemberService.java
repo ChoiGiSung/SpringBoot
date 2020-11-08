@@ -1,7 +1,7 @@
 package jpabook.jpashop.domain.service;
 
 import jpabook.jpashop.domain.domain2.Member;
-import jpabook.jpashop.domain.repository.MemberRpository;
+import jpabook.jpashop.domain.repository.MemberRepositoryOld;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +11,9 @@ import java.util.List;
 @Transactional
 public class MemberService {
 
-    private final MemberRpository memberRpository;
+    private final MemberRepositoryOld memberRpository;
 
-    public MemberService(MemberRpository memberRpository) {
+    public MemberService(MemberRepositoryOld memberRpository) {
         this.memberRpository = memberRpository;
     }
 

@@ -22,7 +22,7 @@ public class OrderRepository {
         return entityManager.find(Order.class,id);
     }
     
-    //검색 로직
+    //검색 로직 동적 쿼리
    public List<Order> findOnePotal(OrderSearch orderSearch){
 
     //값이 다 있다는 전제하에 유저가 이름도 다쓰고 상태도 다 골라줬을때
@@ -35,6 +35,12 @@ public class OrderRepository {
 
        //쿼리 dsl로 하는게 좋다
    }
+
+   //쿼리 dsl 사용
+    public List<Order> findAll(OrderSearch orderSearch){
+        return  null;
+    }
+
 
    //주문 조회 v3 페지 조인 사용
     public List<Order> findOrderDtos() {
