@@ -1,8 +1,15 @@
 package jpabook.jpashop.domain.repository;
 
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jpabook.jpashop.domain.api.OrderSimpleApiController;
 import jpabook.jpashop.domain.domain2.Order;
+import jpabook.jpashop.domain.domain2.OrderStatus;
+import jpabook.jpashop.domain.domain2.QMember;
+import jpabook.jpashop.domain.domain2.QOrder;
+import org.hibernate.engine.jdbc.StreamUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -38,7 +45,35 @@ public class OrderRepository {
 
    //쿼리 dsl 사용
     public List<Order> findAll(OrderSearch orderSearch){
-        return  null;
+        JPAQueryFactory queryFactory=new JPAQueryFactory(entityManager);
+        QOrder order=QOrder.order;
+        QMember member=QMember.member;
+
+
+        return  queryFactory
+                .select(order)
+                .from(order)
+                .join(order.member,member)
+                .where(statusEq(orderSearch.getOrderStatus()),
+                        NameLike(orderSearch.getMemberName()))
+                .limit(1000)
+                .fetch();
+    }
+
+    //쿼리dsl 이름 있는지 동적 검사
+    private BooleanExpression NameLike(String memberName) {
+        if(!StringUtils.hasText(memberName)){
+            return null;
+        }
+        return QMember.member.name.like(memberName);
+    }
+
+    //쿼리dsl 상태 있는지 동적 검사
+    private BooleanExpression statusEq(OrderStatus statusCond){
+        if( statusCond ==null){
+            return null;
+        }
+        return QOrder.order.status.eq(statusCond);
     }
 
 
