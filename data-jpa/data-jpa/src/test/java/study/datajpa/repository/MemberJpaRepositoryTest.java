@@ -61,4 +61,19 @@ class MemberJpaRepositoryTest {
         long deleteCount = memberJpaRepository.count();
         assertEquals(deleteCount,0);
     }
+    //jqpl 여러 조건 나오는지
+    @Test
+    public void findByUSernameAndAge(){
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 120);
+
+        memberJpaRepository.save(m1);
+        memberJpaRepository.save(m2);
+
+        List<Member> result = memberJpaRepository.findByUSernameAndAge("AAA", 9);
+
+        assertEquals(result.size(),1);
+        assertEquals(result.get(0).getUsername(),"AAA");
+        assertEquals(result.get(0).getAge(),10);
+    }
 }

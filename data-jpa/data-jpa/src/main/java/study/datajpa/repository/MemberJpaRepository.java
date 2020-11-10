@@ -42,4 +42,13 @@ public class MemberJpaRepository {
         return entityManager.createQuery("select count(m) from Member m",Long.class).getSingleResult();
         //단건의 singleResult
     }
+
+    //순수 jpa
+    public List<Member> findByUSernameAndAge(String username,int age){
+        return entityManager.createQuery("select m from Member m where m.username = :username and m.age > :age")
+                .setParameter("username",username)
+                .setParameter("age",age)
+                .getResultList();
+        //jpql로 만듬
+    }
 }
