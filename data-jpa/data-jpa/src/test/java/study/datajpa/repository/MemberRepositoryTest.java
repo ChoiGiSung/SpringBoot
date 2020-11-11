@@ -77,4 +77,19 @@ class MemberRepositoryTest {
         assertEquals(result.get(0).getAge(),10);
     }
 
+    //리포지토리 쿼리 정의
+    @Test
+    public void testQuery(){
+        Member m1 = new Member("AAA", 10);
+        Member m2 = new Member("BBB", 120);
+
+        memberRepository.save(m1);
+        memberRepository.save(m2);
+
+        List<Member> result = memberRepository.findUser("AAA", 10);
+
+        assertEquals(result.size(),1);
+        assertEquals(result.get(0),m1);
+    }
+
 }
