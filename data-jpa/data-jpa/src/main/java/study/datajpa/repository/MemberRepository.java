@@ -3,13 +3,13 @@ package study.datajpa.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
+
+import javax.persistence.LockModeType;
+import javax.persistence.QueryHint;
 import java.util.*;
 
 
@@ -63,11 +63,20 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
     List<Member> findAll();
 
     //내가 만든거도 있는데 페치조인 살짝 넣고 싶어
-    @Query
+    @Query("select m from Member m")
     @EntityGraph(attributePaths = {"team"})
-    List<Member> findMemberEntityGraph();
+    List<Member> findMemberEntityGraphBy();
 
     //메서드 이름으로 하는거에 패치 조인 넣기
     @EntityGraph(attributePaths = {"team"})
     List<Member>findEntityByUsername(@Param("username")String username);
+
+    //jpa Hint  == 더티체킹은 원본이 있어야 달라진 점을 체킹한다 -> 메모리 먹는다 -> jpaHint를 써서 아끼자 메모리
+    @QueryHints(value =  @QueryHint(name = "org.hibernate.readOnly",value = "true"))
+    Member findReadOnlyByUsername(String username);
+
+    //Lock
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    List<Member> findLockByUsername(String username);
+
 }

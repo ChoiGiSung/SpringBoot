@@ -237,4 +237,16 @@ class MemberRepositoryTest {
             System.out.println(member.getTeam().getName());
         }
     }
+
+    @Test
+    public void queryHint(){
+        Member member1 = memberRepository.save(new Member("member1", 10));
+        entityManager.flush();
+        entityManager.clear();
+
+        Member findmember = memberRepository.findReadOnlyByUsername(member1.getUsername());
+        findmember.changeName("userSSSS"); //업데이트문이 안나간다.
+        entityManager.flush();
+        //변경 감지 작동 x 힌트를 썼어
+    }
 }
