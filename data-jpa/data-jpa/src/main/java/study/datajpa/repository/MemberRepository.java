@@ -3,7 +3,9 @@ package study.datajpa.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
@@ -44,4 +46,28 @@ public interface MemberRepository extends JpaRepository<Member,Long> {
           countQuery = "select count(m.username) from Member m")
         //카운트 쿼리 분리하서 조인 없이 원하는 것만 얻을 수 있다.
     Page<Member>findNoCountByAge(int age,Pageable pageable);
+
+    //벌크성 쿼리 -> 여러개의 값 변경 (db의 값을 바꾸자)
+    @Modifying(clearAutomatically = true) //flust 랑 clear를  해준다.
+    @Query("update Member m set m.age= m.age+1 where m.age>= :age")
+    int bulkAgePlus(@Param("age")int age);
+
+    //패치조인 -> 한방쿼리
+    @Query("select m from Member m left join fetch m.team")
+    List<Member> findMemberFetchJoin();
+
+    //패치조인을 스프링데이터jpa에서는 엔티티그래프라는
+    //것으로 제공한다
+    @Override//-> 페치 조인과 같은 효과
+    @EntityGraph(attributePaths = {"team"})
+    List<Member> findAll();
+
+    //내가 만든거도 있는데 페치조인 살짝 넣고 싶어
+    @Query
+    @EntityGraph(attributePaths = {"team"})
+    List<Member> findMemberEntityGraph();
+
+    //메서드 이름으로 하는거에 패치 조인 넣기
+    @EntityGraph(attributePaths = {"team"})
+    List<Member>findEntityByUsername(@Param("username")String username);
 }

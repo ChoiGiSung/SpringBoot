@@ -13,6 +13,7 @@ import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
 import study.datajpa.entity.Team;
 
+import javax.persistence.EntityManager;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,6 +26,8 @@ class MemberRepositoryTest {
     MemberRepository memberRepository;
     @Autowired
     TeamRepository teamRepository;
+    @Autowired
+    EntityManager entityManager;
 
 
     @Test
@@ -196,5 +199,42 @@ class MemberRepositoryTest {
 //        assertEquals(page.getTotalPages(),2);//전체 페이지 수
         assertEquals(page.isFirst(),true);//처음?
         assertEquals(page.hasNext(),true);//다음 있음?
+    }
+
+    //벌크성 쿼리
+    @Test
+    public void bulkUpdate(){
+        memberRepository.save(new Member("member1",10));
+        memberRepository.save(new Member("member2",19));
+        memberRepository.save(new Member("member3",20));
+        memberRepository.save(new Member("member4",21));
+        memberRepository.save(new Member("member5",40));
+
+        int resultCount = memberRepository.bulkAgePlus(20);
+
+        assertEquals(resultCount,3);
+    }
+
+    @Test
+    public void findMemberLazy(){
+        Team teamA = new Team("teamA");
+        Team teamB = new Team("teamB");
+
+        teamRepository.save(teamA);
+        teamRepository.save(teamB);
+        Member member1 = new Member("member1", 10, teamA);
+        Member member2 = new Member("member2", 10, teamB);
+        memberRepository.save(member1);
+        memberRepository.save(member2);
+
+        entityManager.flush();
+        entityManager.clear();
+
+        //select member
+        List<Member> members = memberRepository.findMemberFetchJoin();
+        for (Member member : members) {
+            //select 문 또 나감
+            System.out.println(member.getTeam().getName());
+        }
     }
 }
