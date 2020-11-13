@@ -7,13 +7,14 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.dto.MemberDto;
 import study.datajpa.entity.Member;
+import study.datajpa.repository.CustomRepository.MemberRepositoryCustom;
 
 import javax.persistence.LockModeType;
 import javax.persistence.QueryHint;
 import java.util.*;
 
 
-public interface MemberRepository extends JpaRepository<Member,Long> {
+public interface MemberRepository extends JpaRepository<Member,Long>, MemberRepositoryCustom {
 
     //자주 쓰이는 거만 정의 해 놨다*****
 
